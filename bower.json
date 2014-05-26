@@ -1,0 +1,24 @@
+{
+  "name": "lcg-rnd",
+  "version": "0.0.1",
+  "author": "Johan Jordaan",
+  "main": "dist/lcg-rnd.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "src",
+    "main",
+    "test",
+    "*.md",
+    "gruntfile.coffee",
+    "package.json"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "javascript",
+    "library"
+  ]
+}
