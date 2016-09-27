@@ -26,6 +26,6 @@ module.exports = (grunt) => {
 
 
    grunt.registerTask('test', ['mochaTest']);
-   grunt.registerTask('default', ['test','uglify']);
+   grunt.registerTask('default', ['test'/*,'uglify'*/]);
 
 };
