@@ -1,6 +1,6 @@
 {
   "name": "lcg-rnd",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Johan Jordaan",
   "main": "dist/lcg-rnd.js",
   "license": "MIT",
