@@ -65,6 +65,7 @@ rnd = new function() {
          if(values.length === 0) {
             this.random = this._saved;
          }
+         console.log("----->",value);
          return value;
       };
    };
