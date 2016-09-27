@@ -9,10 +9,10 @@ var rnd = require('../lcg-rnd');
 var sampleCount = 10000;
 
 describe('lcg-rnd', () => {
-	describe(' - rand : ', () => {
+	describe(' - _rand : ', () => {
 	   it('should return a random number as a large int', (done) => {
 			_.each(_.range(sampleCount),(i) => {
-				var r = rnd.rand();
+				var r = rnd._rand();
 				expect(r).to.be.at.least(10000);
 			});
 	      done();
@@ -23,17 +23,6 @@ describe('lcg-rnd', () => {
 	   it('should return a random number between 0 and 1', (done) => {
 			_.each(_.range(sampleCount),(i) => {
 				var r = rnd.random();
-				expect(r).to.be.at.least(0);
-				expect(r).to.be.most(1);
-			});
-	      done();
-	   });
-	});
-
-	describe(' - rnd : ', () => {
-	   it('should return a random number bewteen  0 and 1', (done) => {
-			_.each(_.range(sampleCount),(i) => {
-				var r = rnd.rnd();
 				expect(r).to.be.at.least(0);
 				expect(r).to.be.most(1);
 			});
@@ -70,12 +59,12 @@ describe('lcg-rnd', () => {
 
 			rnd.srand(99);
 			_.each(_.range(sampleCount),(i)=>{
-				a.push(rnd.rand());
+				a.push(rnd._rand());
 			})
 
 			rnd.srand(99);
 			_.each(_.range(sampleCount),(i)=>{
-				b.push(rnd.rand());
+				b.push(rnd._rand());
 			})
 
 			_.each(_.range(sampleCount),(i)=>{
@@ -88,8 +77,22 @@ describe('lcg-rnd', () => {
 
 	describe(' - testing interface : ', () => {
 		describe(' - fix a single value : ', () => {
+			it('',(done)=>{
+				rnd._fixRandomValue(10);
+				rnd.random().should.equal(10);
+				rnd.random().should.not.equal(10);
+				done();
+			});
 		});
 		describe(' - fix a range of values : ', () => {
+			it('',(done)=>{
+				rnd._fixRandomValues([10,-90,3]);
+				rnd.random().should.equal(10);
+				rnd.random().should.equal(-90);
+				rnd.random().should.equal(3);
+				rnd.random().should.below(1);
+				done();
+			});
 		});
 		describe(' - restore : ', () => {
 		});

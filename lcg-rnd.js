@@ -12,22 +12,18 @@ rnd = new function() {
       return this.lcgParm.seed = seed;
    };
 
-   this.rand = () => {
+   this._rand = () => {
       this.lcgParm.seed = (this.lcgParm.a * this.lcgParm.seed + this.lcgParm.c) % this.lcgParm.m;
       return this.lcgParm.seed;
    };
 
    this.random = () => {
-      return this.rand() / this.lcgParm.m;
-   };
-
-   this.rnd =  () => {
-      return this.random();
+      return this._rand() / this.lcgParm.m;
    };
 
    this.rndFloatBetween = (min, max) => {
       var delta, r;
-      r = this.rnd();
+      r = this.random();
       delta = max - min;
       return min + delta * r;
    };
@@ -37,7 +33,7 @@ rnd = new function() {
       count = max - min + 1;
       prob = 1 / count;
       total_prob = prob;
-      r = this.rnd();
+      r = this.random();
       _ref = _.range(count);
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
          i = _ref[_i];
@@ -63,12 +59,15 @@ rnd = new function() {
          var value = values.pop();
          this._fixRandomValues(values.reverse());
          if(values.length === 0) {
-            this.random = this._saved;
+            this._restore();
          }
-         console.log("----->",value);
          return value;
       };
    };
+   this._restore = (values) => {
+      this.random = this._saved;
+   };
+
 };
 
 if (typeof module !== "undefined" && module !== null) {
